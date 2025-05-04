@@ -39,7 +39,7 @@ class Expense:
     def __init__(self, amount: float, description: str, user=None):
         self.amount = amount
         self.description = description
-        self.user = user  # Added user reference
+        self.user = user
 
     def get_details(self):
         return f"{self.description} - €{self.amount}"
@@ -132,7 +132,7 @@ class FinanceTracker:
                         self.expenses.append(expense)
                         for u in users:
                             u.add_expense(expense)
-                else:  # "Expense" (personal)
+                else:
                     user = self.find_user(user_field)
                     if user:
                         expense = Expense(amount, description, user)
@@ -239,7 +239,6 @@ def main():
         elif choice == '4':
             break
 
-        # Save data after each loop
         with open('users.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             for u in users:
